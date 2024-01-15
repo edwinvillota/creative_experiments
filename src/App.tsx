@@ -8,8 +8,9 @@ function App() {
       <div className="card">
         <p>
           Edit <code>src/App.tsx</code>
-          and save to test HMR
+          and save to test HMR Test
         </p>
+        Test
       </div>
     </>
   );
