@@ -1,4 +1,4 @@
-import '@/common/styles/Reset.css';
+import '@/common/styles/index.css';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
