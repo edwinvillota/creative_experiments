@@ -1,4 +1,4 @@
-import { Vector2D } from '@/common/classes';
+import { Mouse, Vector2D } from '@/common/classes';
 
 export class Spawn {
   private effect: Effect;
@@ -15,7 +15,7 @@ export class Spawn {
     );
     this.velocity = new Vector2D(0, 0);
     this.acceleration = new Vector2D(0, 0);
-    this.color = [Math.floor(Math.random() * 360), 100, 70, 1];
+    this.color = [Math.floor(Math.random() * 360), 100, 30, 1];
   }
 
   private infiniteEdges() {
@@ -39,21 +39,10 @@ export class Spawn {
 
   private attractToMouse() {
     const mouse = this.effect.mouse;
-    const dir = Vector2D.sub(mouse, this.position);
+    const dir = Vector2D.sub(mouse.position, this.position);
     dir.normalize();
     dir.mult(0.5);
     this.applyForce(dir);
-  }
-
-  private isMouseInCanvas() {
-    const mouse = this.effect.mouse;
-    const canvas = this.effect.ctx.canvas;
-    return (
-      mouse.x > 0 &&
-      mouse.x < canvas.width &&
-      mouse.y > 0 &&
-      mouse.y < canvas.height
-    );
   }
 
   private changeColor() {
@@ -66,7 +55,7 @@ export class Spawn {
   public update() {
     this.velocity.limit(10);
     this.createParticles();
-    if (this.isMouseInCanvas()) {
+    if (this.effect.mouse.isMouseOver) {
       this.attractToMouse();
     } else {
       this.randomMovement();
@@ -179,18 +168,18 @@ export class Particle {
 export class Effect {
   public ctx: CanvasRenderingContext2D;
   public particles: Particle[];
-  public mouse: Vector2D;
+  public mouse: Mouse;
   public spawns!: Spawn[];
 
   constructor(ctx: CanvasRenderingContext2D) {
     this.ctx = ctx;
     this.particles = [];
     this.spawns = [];
-    this.mouse = new Vector2D(0, 0);
+    this.mouse = new Mouse();
   }
 
   public init() {
-    Array.from({ length: 4 }).forEach(() => {
+    Array.from({ length: 2 }).forEach(() => {
       const spawn = new Spawn(this);
       this.spawns.push(spawn);
     });
