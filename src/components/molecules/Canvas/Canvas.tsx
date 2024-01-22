@@ -3,12 +3,12 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
-  useRef,
   useState,
 } from 'react';
 
 import type { IUseCanvasProps } from '@/common/hooks';
 import { useCanvas } from '@/common/hooks';
+import useResizeObserver from '@/common/hooks/useResizeObserver/UseResizeObserver';
 
 interface ICanvasProps {
   refs?: {
@@ -21,16 +21,7 @@ interface ICanvasProps {
 }
 
 export const Canvas: FC<ICanvasProps> = (props) => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [canvasRef, ctxRef] = useCanvas({ ...props.sketch });
-  const [dimentions, setDimentions] = useState<{
-    width: number;
-    height: number;
-  }>({
-    width: 0,
-    height: 0,
-  });
-
   const handleResize = useCallback(() => {
     if (containerRef.current) {
       const { width, height } = containerRef.current.getBoundingClientRect();
@@ -43,6 +34,16 @@ export const Canvas: FC<ICanvasProps> = (props) => {
     props.sketch?.draw?.(ctxRef.current!);
   }, [canvasRef, ctxRef, props.sketch]);
 
+  const containerRef = useResizeObserver<HTMLDivElement>(handleResize);
+
+  const [dimentions, setDimentions] = useState<{
+    width: number;
+    height: number;
+  }>({
+    width: 0,
+    height: 0,
+  });
+
   useEffect(() => {
     if (containerRef.current) {
       const { width, height } = containerRef.current.getBoundingClientRect();
@@ -51,13 +52,14 @@ export const Canvas: FC<ICanvasProps> = (props) => {
       canvasRef.current!.height = height;
 
       setDimentions({ width, height });
+      containerRef.current.addEventListener('resize', handleResize);
     }
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [canvasRef, handleResize]);
+  }, []);
 
   useImperativeHandle(
     props.refs?.canvas,

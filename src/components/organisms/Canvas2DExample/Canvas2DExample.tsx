@@ -29,7 +29,8 @@ export const Canvas2DExample = () => {
           draw,
         }}
         containerProps={{
-          className: 'w-full h-full absolute top-0 left-0 bg-white',
+          className:
+            'w-full h-full absolute top-0 left-0 bg-white overflow-hidden',
         }}
         canvasProps={{ ...mouse.eventHandlers }}
       />
