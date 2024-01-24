@@ -30,8 +30,10 @@ export const Canvas: FC<ICanvasProps> = (props) => {
       canvasRef.current!.height = height;
       setDimentions({ width, height });
     }
-    props.sketch?.setup?.(ctxRef.current!);
-    props.sketch?.draw?.(ctxRef.current!);
+    if (ctxRef.current) {
+      props.sketch?.setup?.(ctxRef.current!);
+      props.sketch?.draw?.(ctxRef.current!);
+    }
   }, [canvasRef, ctxRef, props.sketch]);
 
   const containerRef = useResizeObserver<HTMLDivElement>(handleResize);

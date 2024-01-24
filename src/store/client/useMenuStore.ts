@@ -13,7 +13,7 @@ export type TMenuActions = {
   toggle: () => void;
 };
 
-const useMenuStoreBase = create<TMenuState & TMenuActions>((set, get) => ({
+const useMenuStoreBase = create<TMenuState & TMenuActions>((set) => ({
   isOpen: false,
   open: () => set({ isOpen: true }),
   close: () => set({ isOpen: false }),
