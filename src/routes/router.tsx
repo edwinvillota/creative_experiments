@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 
 import { MainLayout } from '@/components/layouts';
 import { Home, Lines } from '@/screens';
@@ -6,7 +6,7 @@ import { Home, Lines } from '@/screens';
 import { gsapLoader } from './gsapLoader';
 import { PATHS } from './paths';
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <MainLayout />,
