@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { FC, useEffect, useMemo, useRef } from 'react';
 import { NavLink, NavLinkProps, useLocation } from 'react-router-dom';
 
+import { removeBaseUrl } from '@/common/utils';
 import { PATHS } from '@/routes';
 import { getPathIndex } from '@/routes/gsapLoader';
 
@@ -30,8 +31,11 @@ export const SidebarMenu = () => {
 
     if (!isDifferentPath) return;
 
-    const fromIndex = getPathIndex(prevLocation.current.pathname);
-    const toIndex = getPathIndex(location.pathname);
+    const fromPathname = removeBaseUrl(prevLocation.current.pathname);
+    const toPathname = removeBaseUrl(location.pathname);
+
+    const fromIndex = getPathIndex(fromPathname);
+    const toIndex = getPathIndex(toPathname);
 
     const direction = fromIndex < toIndex ? 1 : -1;
 

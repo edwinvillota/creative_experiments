@@ -11,7 +11,8 @@ export const getPathIndex = (path: string) => {
 };
 
 export const gsapLoader = (toPath: IPath) => {
-  const fromIndex = getPathIndex(window.location.pathname);
+  const pathname = window.location.hash.replace('#', '');
+  const fromIndex = getPathIndex(pathname);
   const toIndex = getPathIndex(toPath.path);
 
   const direction = fromIndex < toIndex ? -1 : 1;
