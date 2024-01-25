@@ -10,8 +10,8 @@ export const getPathIndex = (path: string) => {
   return index;
 };
 
-export const gsapLoader = (toPath: IPath, fromPath: string) => {
-  const fromIndex = getPathIndex(fromPath);
+export const gsapLoader = (toPath: IPath) => {
+  const fromIndex = getPathIndex(window.location.pathname);
   const toIndex = getPathIndex(toPath.path);
 
   const direction = fromIndex < toIndex ? -1 : 1;
@@ -19,8 +19,8 @@ export const gsapLoader = (toPath: IPath, fromPath: string) => {
   useMenuStore.getState().close();
   const timeline = gsap.timeline({
     defaults: {
-      duration: 0.5,
-      ease: 'back.out',
+      duration: 0.3,
+      ease: 'power2.inOut',
     },
   });
 

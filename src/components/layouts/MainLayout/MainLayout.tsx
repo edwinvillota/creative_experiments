@@ -11,10 +11,10 @@ export const MainLayout = () => {
   return (
     <div className="relative flex h-full w-full overflow-hidden">
       <nav
-        className={`absolute  top-0 z-10 flex ${isMenuOpen ? 'left-80' : 'left-0'} `}
+        className={`absolute top-0 z-10 flex  transition-all duration-75 ease-in ${isMenuOpen ? 'left-80' : 'left-0'} `}
       >
         <button
-          className={`flex h-full w-full items-center justify-center bg-white p-4`}
+          className={`flex h-full w-full items-center justify-center bg-transparent p-4`}
           onClick={() => toogleMenu()}
         >
           <Bars3Icon className="h-6 w-6 text-black" />

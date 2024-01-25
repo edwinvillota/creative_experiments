@@ -8,9 +8,9 @@ export const PATHS: Record<string, IPath> = {
     name: 'Home',
     path: '/',
   },
-  CANVAS_2D: {
-    name: 'Canvas 2D',
-    path: '/canvas-2d',
+  LINES: {
+    name: 'Lines',
+    path: '/lines',
   },
   ABOUT: {
     name: 'About',
