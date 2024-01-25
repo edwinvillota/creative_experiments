@@ -4,8 +4,8 @@ import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/creative_experiments/',
   plugins: [react()],
+  base: '/creative_experiments/',
   resolve: {
     alias: {
       '@': resolve(__dirname, './src/'),
