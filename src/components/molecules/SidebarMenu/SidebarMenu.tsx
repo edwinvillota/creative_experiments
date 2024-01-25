@@ -18,7 +18,7 @@ export const SidebarMenu = () => {
     () =>
       gsap.timeline({
         defaults: {
-          duration: 0.5,
+          duration: 0.3,
           ease: 'back.out',
         },
       }),
