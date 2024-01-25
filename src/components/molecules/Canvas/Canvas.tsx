@@ -8,7 +8,7 @@ import {
 
 import type { IUseCanvasProps } from '@/common/hooks';
 import { useCanvas } from '@/common/hooks';
-import useResizeObserver from '@/common/hooks/useResizeObserver/UseResizeObserver';
+import { useResizeObserver } from '@/common/hooks';
 
 interface ICanvasProps {
   refs?: {
