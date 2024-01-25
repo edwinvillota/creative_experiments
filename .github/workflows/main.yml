@@ -18,14 +18,14 @@ concurrency:
 jobs:
   deploy:
     environment:
-      name: ${{ steps.deployment.outputs.page.url }}
+      name: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up node
         uses: actions/setup-node@v3
-        with: 
+        with:
           node-version: 20
           cache: 'npm'
       - name: Install dependencies
