@@ -71,12 +71,7 @@ export class Spawn {
 
     for (let i = 0; i < particlesPerFrame; i++) {
       const particle = new Particle(this.effect, [...this.color]);
-      particle.velocity.add(
-        Vector2D.random({
-          x: { min: -0.5, max: 0.5 },
-          y: { min: -0.5, max: 0.5 },
-        })
-      );
+      particle.velocity.add(Vector2D.random(-0.5, 0.5));
       particle.position = this.position.copy();
       this.effect.particles.push(particle);
     }
@@ -86,10 +81,7 @@ export class Spawn {
     const prob = Math.random();
 
     if (prob > 0.5) {
-      const dir = Vector2D.random({
-        x: { min: -1, max: 1 },
-        y: { min: -1, max: 1 },
-      });
+      const dir = Vector2D.random(-1, 1);
       dir.normalize();
       dir.mult(5);
       this.applyForce(dir);
