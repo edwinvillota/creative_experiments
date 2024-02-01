@@ -5,17 +5,19 @@ export interface ICanvasSetup {
 }
 
 export interface ICanvasDraw {
-  (context: CanvasRenderingContext2D, frameCount?: number): void;
+  (context: CanvasRenderingContext2D): void;
 }
 
 export interface IUseCanvasProps {
   animated?: boolean;
+  clear?: boolean;
   setup?: ICanvasSetup;
   draw?: ICanvasDraw;
 }
 
 export const useCanvas = ({
   animated = false,
+  clear = true,
   setup,
   draw,
 }: IUseCanvasProps) => {
@@ -31,8 +33,9 @@ export const useCanvas = ({
     if (context && canvas) {
       ctx.current = context;
       setup(context);
+      draw && draw(context);
     }
-  }, [setup]);
+  }, [draw, setup]);
 
   useEffect(() => {
     if (!draw) return;
@@ -40,15 +43,23 @@ export const useCanvas = ({
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
 
-    let frameCount = 0;
     let animationFrameId: number;
+    let msPrev = window.performance.now();
+    const fps = 60;
+    const msPerFrame = 1000 / fps;
 
     const render = () => {
-      frameCount++;
-      ctx!.clearRect(0, 0, canvas!.width, canvas!.height);
-      draw(ctx!, frameCount);
       if (animated) {
         animationFrameId = window.requestAnimationFrame(render);
+        const msNow = window.performance.now();
+        const msPassed = msNow - msPrev;
+
+        if (msPassed < msPerFrame) return;
+
+        const excessTime = msPassed % msPerFrame;
+        msPrev = msNow - excessTime;
+        if (clear) ctx!.clearRect(0, 0, canvas!.width, canvas!.height);
+        draw(ctx!);
       }
     };
     render();
@@ -56,7 +67,7 @@ export const useCanvas = ({
     return () => {
       window.cancelAnimationFrame(animationFrameId);
     };
-  }, [animated, draw]);
+  }, [animated, clear, draw]);
 
   return [canvasRef, ctx] as const;
 };
