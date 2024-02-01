@@ -41,7 +41,7 @@ export class Spawn {
     const mouse = this.effect.mouse;
     const dir = Vector2D.sub(mouse.position, this.position);
     dir.normalize();
-    dir.mult(0.5);
+    dir.mult(1);
     this.applyForce(dir);
   }
 
@@ -53,7 +53,7 @@ export class Spawn {
   }
 
   public update() {
-    this.velocity.limit(10);
+    this.velocity.limit(15);
     this.createParticles();
     if (this.effect.mouse.isMouseOver) {
       this.attractToMouse();
@@ -71,15 +71,21 @@ export class Spawn {
 
     for (let i = 0; i < particlesPerFrame; i++) {
       const particle = new Particle(this.effect, [...this.color]);
+      particle.velocity.add(Vector2D.random(-0.5, 0.5));
       particle.position = this.position.copy();
       this.effect.particles.push(particle);
     }
   }
 
   private randomMovement() {
-    const dir = Vector2D.random(-1, 1);
-    dir.normalize();
-    this.applyForce(dir);
+    const prob = Math.random();
+
+    if (prob > 0.5) {
+      const dir = Vector2D.random(-1, 1);
+      dir.normalize();
+      dir.mult(5);
+      this.applyForce(dir);
+    }
   }
 
   private applyForce(force: Vector2D) {
@@ -111,11 +117,11 @@ export class Particle {
     );
     this.velocity = new Vector2D(0, 0);
     this.acceleration = new Vector2D(0, 0.0);
-    this.size = Math.floor(Math.random() * 70 + 2);
+    this.size = Math.floor(Math.random() * 80 + 2);
     this.color = color;
   }
 
-  private applyForce(force: Vector2D) {
+  public applyForce(force: Vector2D) {
     this.acceleration.add(force);
   }
 
@@ -135,15 +141,14 @@ export class Particle {
   }
 
   public update() {
-    this.velocity.limit(4);
-    this.applyForce(Vector2D.random(-0.5, 0.5));
+    this.velocity.limit(6);
     if (this.color[2] < 100) {
       this.color[2] += 0.5;
     } else {
       this.color[2] = 100;
     }
     if (this.size >= 0.2) {
-      this.size -= 0.2;
+      this.size += 0.2;
     } else {
       this.size = 0;
     }
