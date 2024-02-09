@@ -35,7 +35,7 @@ export const Canvas2DExample = () => {
         canvasProps={{ ...mouse.eventHandlers }}
       />
       <div className="align-center pointer-events-none relative flex h-full w-full items-center justify-center bg-transparent">
-        <h1 className="text-7xl font-black uppercase text-white mix-blend-difference md:text-9xl">
+        <h1 className="text-7xl uppercase text-white mix-blend-difference md:text-9xl">
           Creative
         </h1>
       </div>
