@@ -14,10 +14,10 @@ export const MainLayout = () => {
         className={`absolute top-0 z-10 flex  transition-all duration-75 ease-in ${isMenuOpen ? 'left-80' : 'left-0'} `}
       >
         <button
-          className={`flex h-full w-full items-center justify-center bg-transparent p-4`}
+          className={`flex h-full w-full items-center justify-center bg-transparent  p-4`}
           onClick={() => toogleMenu()}
         >
-          <Bars3Icon className="h-6 w-6 text-black" />
+          <Bars3Icon className="h-6 w-6 text-black " />
         </button>
       </nav>
       <aside
