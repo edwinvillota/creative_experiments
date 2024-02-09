@@ -1,8 +1,7 @@
 import { createHashRouter } from 'react-router-dom';
 
 import { MainLayout } from '@/components/layouts';
-import { GalaxyScreen, Home, LinesScreen } from '@/screens';
-import { TableScreen } from '@/screens/Table';
+import { Home, LinesScreen } from '@/screens';
 
 import { gsapLoader } from './gsapLoader';
 import { PATHS } from './paths';
