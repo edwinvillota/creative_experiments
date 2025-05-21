@@ -12,6 +12,10 @@ export const PATHS: Record<string, IPath> = {
     name: 'Lines',
     path: '/lines',
   },
+  GALAXY: {
+    name: 'Galaxy',
+    path: '/galaxy',
+  },
   ABOUT: {
     name: 'About',
     path: '/about',
