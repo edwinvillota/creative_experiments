@@ -2,6 +2,7 @@ import { createHashRouter } from 'react-router-dom';
 
 import { MainLayout } from '@/components/layouts';
 import { GalaxyScreen, Home, LinesScreen } from '@/screens';
+import { TableScreen } from '@/screens/Table';
 
 import { gsapLoader } from './gsapLoader';
 import { PATHS } from './paths';
@@ -24,6 +25,12 @@ export const router = createHashRouter([
       {
         path: PATHS.GALAXY.path,
         element: <GalaxyScreen />,
+        loader: () => gsapLoader(PATHS.GALAXY),
+      },
+      {
+        path: PATHS.TABLE.path,
+        element: <TableScreen />,
+        loader: () => gsapLoader(PATHS.TABLE),
       },
       {
         path: PATHS.ABOUT.path,

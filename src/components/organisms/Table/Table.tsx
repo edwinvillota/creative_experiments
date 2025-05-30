@@ -1,0 +1,41 @@
+import './table.css';
+
+import { PropsWithChildren, ReactNode } from 'react';
+import { JSX } from 'react/jsx-dev-runtime';
+
+import { TNestedKeyOf } from '@/common/types';
+
+import { TableBody } from './TableBody';
+import { TableHeader } from './TableHeader';
+import { TableProvider } from './TableProvider';
+
+export interface IColDef<TData> {
+  header: string;
+  field: TNestedKeyOf<TData>;
+  render?: (
+    row: TData,
+    value: string | boolean | number | null | undefined
+  ) => ReactNode;
+}
+
+export interface ITableProps<TData> extends PropsWithChildren {
+  rows: TData[];
+  columns: IColDef<TData>[];
+}
+
+const Table = <TData,>({ columns, rows, children }: ITableProps<TData>) => {
+  if (!columns || !columns.length) return null;
+
+  return (
+    <TableProvider columns={columns} rows={rows}>
+      <table className="custom-table">{children}</table>
+    </TableProvider>
+  );
+};
+
+// eslint-disable-next-line unused-imports/no-unused-vars
+Table.Header = TableHeader as <TData>() => JSX.Element;
+// eslint-disable-next-line unused-imports/no-unused-vars
+Table.Body = TableBody as <TData>() => JSX.Element;
+
+export default Table;

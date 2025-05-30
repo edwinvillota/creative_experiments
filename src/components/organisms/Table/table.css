@@ -1,0 +1,30 @@
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, sans-serif;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.custom-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #374151;
+  letter-spacing: 0.03em;
+}
+
+.custom-table tr:hover td {
+  background: #f9fafb;
+  transition: background 0.2s;
+}
+
+.custom-table tr:last-child td {
+  border-bottom: none;
+}
