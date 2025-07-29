@@ -28,7 +28,9 @@ const Table = <TData,>({ columns, rows, children }: ITableProps<TData>) => {
 
   return (
     <TableProvider columns={columns} rows={rows}>
-      <table className="custom-table">{children}</table>
+      <div className="custom-table-wrapper">
+        <table className="custom-table">{children}</table>
+      </div>
     </TableProvider>
   );
 };

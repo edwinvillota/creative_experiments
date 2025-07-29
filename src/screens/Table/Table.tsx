@@ -1,39 +1,12 @@
 import { Table } from '@/components/organisms';
-import { ColDef } from '@/components/organisms/Table/Table';
+import { IColDef } from '@/components/organisms/Table/Table';
+import { IProduct, PRODUCTS } from '@/mocks/products';
 
-const mockedData = [
-  {
-    id: 1,
-    name: 'Edwin',
-    email: 'edwinvillota@hotmail.com',
-    address: { street: '80', line1: 'TestLine1' },
-  },
-  {
-    id: 2,
-    name: 'Jhon',
-    email: 'jhon.doe@gmail.com',
-    address: { street: '80', line1: 'TestLine1' },
-  },
-];
-
-const COL_DEFS: ColDef<(typeof mockedData)[0]>[] = [
-  {
-    header: 'Id',
-    field: 'id',
-  },
-  {
-    header: 'Name',
-    field: 'name',
-  },
-  {
-    header: 'Email',
-    field: 'email',
-    render: (_, value) => <a href={`email:${value}`}>{value} </a>,
-  },
-  {
-    header: 'Address street',
-    field: 'address.street',
-  },
+const COL_DEFS: IColDef<IProduct>[] = [
+  { header: 'Id', field: 'id' },
+  { header: 'Name', field: 'name' },
+  { header: 'Category', field: 'category.name' },
+  { header: 'Price', field: 'price', render: (_, value) => `$ ${value}` },
 ];
 
 export const TableScreen = () => {
@@ -47,7 +20,7 @@ export const TableScreen = () => {
         </p>
       </article>
       <article>
-        <Table columns={COL_DEFS} rows={mockedData}>
+        <Table columns={COL_DEFS} rows={PRODUCTS}>
           <Table.Header />
           <Table.Body />
         </Table>
