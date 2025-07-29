@@ -1,7 +1,6 @@
 import './table.css';
 
 import { PropsWithChildren, ReactNode } from 'react';
-import { JSX } from 'react/jsx-dev-runtime';
 
 import { TNestedKeyOf } from '@/common/types';
 
@@ -36,8 +35,8 @@ const Table = <TData,>({ columns, rows, children }: ITableProps<TData>) => {
 };
 
 // eslint-disable-next-line unused-imports/no-unused-vars
-Table.Header = TableHeader as <TData>() => JSX.Element;
+Table.Header = TableHeader;
 // eslint-disable-next-line unused-imports/no-unused-vars
-Table.Body = TableBody as <TData>() => JSX.Element;
+Table.Body = TableBody;
 
 export default Table;
