@@ -17,7 +17,7 @@ export interface IVector<TVectorType> {
 }
 
 abstract class VectorStaticBase {
-  public static random(args?: IStaticVector2DRandomArgs): VectorBase {
+  public static random(): VectorBase {
     throw new Error('Method not implemented.');
   }
 }
