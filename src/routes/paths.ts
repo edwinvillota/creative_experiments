@@ -20,6 +20,10 @@ export const PATHS: Record<string, IPath> = {
     name: 'Table',
     path: '/table',
   },
+  COLORSCHEME: {
+    name: 'ColorScheme',
+    path: '/colorscheme',
+  },
   ABOUT: {
     name: 'About',
     path: '/about',

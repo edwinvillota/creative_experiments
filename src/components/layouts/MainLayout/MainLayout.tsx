@@ -25,7 +25,7 @@ export const MainLayout = () => {
       >
         <SidebarMenu />
       </aside>
-      <main className="main-content z-0 h-full w-full">
+      <main className="main-content z-0 h-full max-h-full w-full overflow-auto">
         <Outlet />
       </main>
     </div>

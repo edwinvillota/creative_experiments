@@ -25,14 +25,14 @@ export const useCanvas = ({
   const ctx = useRef<CanvasRenderingContext2D | null>(null);
 
   useEffect(() => {
-    if (!setup) return;
-
     const canvas = canvasRef.current;
-    const context = canvas?.getContext('2d');
+    const context = canvas?.getContext('2d', {
+      willReadFrequently: true,
+    });
 
     if (context && canvas) {
       ctx.current = context;
-      setup(context);
+      setup && setup(context);
       draw && draw(context);
     }
   }, [draw, setup]);
@@ -41,7 +41,9 @@ export const useCanvas = ({
     if (!draw) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas?.getContext('2d');
+    const ctx = canvas?.getContext('2d', {
+      willReadFrequently: true,
+    });
 
     let animationFrameId: number;
     let msPrev = window.performance.now();

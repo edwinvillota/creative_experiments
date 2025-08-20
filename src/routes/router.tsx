@@ -1,7 +1,9 @@
 import { createHashRouter } from 'react-router-dom';
 
+import ColorSchemeProvider from '@/common/contexts/ColorScheme';
 import { MainLayout } from '@/components/layouts';
 import { GalaxyScreen, Home, LinesScreen } from '@/screens';
+import { ColorSchemeFromImage } from '@/screens/ColorSchemeFromImage/ColorSchemeFromImage';
 import { TableScreen } from '@/screens/Table';
 
 import { gsapLoader } from './gsapLoader';
@@ -31,6 +33,15 @@ export const router = createHashRouter([
         path: PATHS.TABLE.path,
         element: <TableScreen />,
         loader: () => gsapLoader(PATHS.TABLE),
+      },
+      {
+        path: PATHS.COLORSCHEME.path,
+        element: (
+          <ColorSchemeProvider>
+            <ColorSchemeFromImage />
+          </ColorSchemeProvider>
+        ),
+        loader: () => gsapLoader(PATHS.COLORSCHEME),
       },
       {
         path: PATHS.ABOUT.path,
