@@ -12,3 +12,42 @@ body {
 #root {
   height: 100%;
 }
+
+.image-wrapper-transition {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.pallete-wrapper-transition {
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+::view-transition-old(image-wrapper) {
+  display: none;
+}
+::view-transition-new(image-wrapper) {
+  animation: none;
+}
+
+::view-transition-old(pallete-wrapper) {
+  display: none;
+}
+::view-transition-new(pallete-wrapper) {
+  display: none;
+  animation: none;
+}
+
+.expand-circle-animation {
+  animation: expand-circle 0.5s ease-in-out;
+}
+
+@keyframes expand-circle {
+  from {
+    filter: blur(4px);
+  }
+
+  to {
+    filter: blur(0);
+  }
+}
