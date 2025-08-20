@@ -34,6 +34,7 @@ const Table = <TData,>({ columns, rows, children }: ITableProps<TData>) => {
   );
 };
 
+
 Table.Header = TableHeader;
 Table.Body = TableBody;
 
