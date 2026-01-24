@@ -7,11 +7,11 @@ export const ImageFadeMaterial = shaderMaterial(
   {
     effectFactor: 0.5,
     dispFactor: 0,
-    tex: undefined,
-    tex2: undefined,
-    disp: undefined,
+    tex: null,
+    tex2: null,
+    disp: null,
   },
-  ` varying vec2 vUv;
+  /* glsl */ ` varying vec2 vUv;
     void main() {
       vUv = uv;
       gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
@@ -40,7 +40,7 @@ export const ImageFadeMaterial = shaderMaterial(
 extend({ ImageFadeMaterial });
 
 export const FadingImageDisplacement = () => {
-  const ref = useRef(null);
+  const ref = useRef<THREE.ShaderMaterial & { dispFactor: number }>(null);
   const [texture1, texture2, dispTexture] = useTexture([
     'images/cha-w-1.webp',
     'images/cha-w-2.webp',

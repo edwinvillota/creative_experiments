@@ -5,8 +5,8 @@ import { FadingImageDisplacement } from './components/FadingImageDisplacement';
 
 export const HoverTransition = () => {
   return (
-    <div className="h-full w-full rounded-sm border-2 border-red-300">
-      <Canvas>
+    <div className="h-full w-full rounded-sm  border-red-300">
+      <Canvas camera={{ position: [0, 0, 7] }}>
         <OrbitControls />
         <FadingImageDisplacement />
       </Canvas>
