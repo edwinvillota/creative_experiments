@@ -21,8 +21,12 @@ export const PATHS: Record<string, IPath> = {
     path: '/table',
   },
   COLORSCHEME: {
-    name: 'ColorScheme',
+    name: 'Color Scheme',
     path: '/colorscheme',
+  },
+  HOVER_TRANSITION: {
+    name: 'Hover Transition',
+    path: '/hovertransition',
   },
   ABOUT: {
     name: 'About',

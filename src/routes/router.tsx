@@ -4,6 +4,7 @@ import ColorSchemeProvider from '@/common/contexts/ColorScheme';
 import { MainLayout } from '@/components/layouts';
 import { GalaxyScreen, Home, LinesScreen } from '@/screens';
 import { ColorSchemeFromImage } from '@/screens/ColorSchemeFromImage/ColorSchemeFromImage';
+import { HoverTransition } from '@/screens/HoverTransition';
 import { TableScreen } from '@/screens/Table';
 
 import { gsapLoader } from './gsapLoader';
@@ -42,6 +43,11 @@ export const router = createHashRouter([
           </ColorSchemeProvider>
         ),
         loader: () => gsapLoader(PATHS.COLORSCHEME),
+      },
+      {
+        path: PATHS.HOVER_TRANSITION.path,
+        element: <HoverTransition />,
+        loader: () => gsapLoader(PATHS.HOVER_TRANSITION),
       },
       {
         path: PATHS.ABOUT.path,
