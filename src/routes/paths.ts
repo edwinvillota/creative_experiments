@@ -28,6 +28,10 @@ export const PATHS: Record<string, IPath> = {
     name: 'Hover Transition',
     path: '/hovertransition',
   },
+  SHADERS: {
+    name: 'Shaders',
+    path: '/shaders',
+  },
   ABOUT: {
     name: 'About',
     path: '/about',
