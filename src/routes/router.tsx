@@ -7,6 +7,7 @@ import { ColorSchemeFromImage } from '@/screens/ColorSchemeFromImage/ColorScheme
 import { HoverTransition } from '@/screens/HoverTransition';
 import { TableScreen } from '@/screens/Table';
 
+import { Shaders } from '../screens/Shaders';
 import { gsapLoader } from './gsapLoader';
 import { PATHS } from './paths';
 
@@ -48,6 +49,11 @@ export const router = createHashRouter([
         path: PATHS.HOVER_TRANSITION.path,
         element: <HoverTransition />,
         loader: () => gsapLoader(PATHS.HOVER_TRANSITION),
+      },
+      {
+        path: PATHS.SHADERS.path,
+        element: <Shaders />,
+        loader: () => gsapLoader(PATHS.SHADERS),
       },
       {
         path: PATHS.ABOUT.path,

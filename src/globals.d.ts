@@ -16,6 +16,8 @@ type ImageFadeMaterialProps = Object3DNode<
 declare module '@react-three/fiber' {
   interface ThreeElements {
     imageFadeMaterial: ImageFadeMaterialProps;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fragmentShaderMaterial: any;
   }
 }
 
